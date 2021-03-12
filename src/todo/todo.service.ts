@@ -15,4 +15,8 @@ export class TodoService {
         return this.storage;
     }
 
+    findOne(id: number): Todo {
+        return this.storage.find((t: Todo) => t.id === id);
+    }
+
 }
