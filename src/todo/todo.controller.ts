@@ -1,5 +1,5 @@
 // todo.controller.ts
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Todo } from './todo.interface';
 import { TodoService } from './todo.service';
 
@@ -8,8 +8,13 @@ export class TodoController {
     // dependency injection
     constructor(private readonly todoService: TodoService) {}
 
+    @Post() 
+    create(@Body() todo: Todo): void {
+        return this.todoService.create(todo);
+    }
+
     @Get()
     findAll(): Todo[] {
-        return [];
+        return this.todoService.findAll();
     }
 }
