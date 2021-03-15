@@ -1,5 +1,5 @@
 // todo.controller.ts
-import { Param } from '@nestjs/common';
+import { Param, ParseIntPipe } from '@nestjs/common';
 import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
 import { Todo } from './todo.interface';
 import { TodoService } from './todo.service';
@@ -24,7 +24,7 @@ export class TodoController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): Todo {
+  findOne(@Param('id', ParseIntPipe) id: number): Todo {
     this.logger.log('Handling findOne() request with id=' + id + '....');
     return this.todoService.findOne(id);
   }
