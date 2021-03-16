@@ -19,4 +19,8 @@ export class TodoService {
         return this.storage.find((t: Todo) => t.id === id);
     }
 
+    update(id: number, todo: Todo): void {
+        const index = this.storage.findIndex((t: Todo) => t.id === id);
+        this.storage[index] = todo;
+    }
 }
